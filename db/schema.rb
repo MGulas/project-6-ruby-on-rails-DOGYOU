@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_08_140605) do
+ActiveRecord::Schema.define(version: 2022_04_11_132535) do
 
   create_table "comments", force: :cascade do |t|
     t.string "creator"
@@ -49,6 +49,11 @@ ActiveRecord::Schema.define(version: 2022_04_08_140605) do
     t.integer "section_id"
     t.string "team_name"
     t.integer "project_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "teams_users", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
