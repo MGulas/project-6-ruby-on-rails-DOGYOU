@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 2022_04_11_132535) do
   end
 
   create_table "teams_users", force: :cascade do |t|
+    t.integer "team_number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
