@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Creator:</strong>
+  <%= @score.creator %>
+</p>
+
+<p>
+  <strong>Recipient:</strong>
+  <%= @score.recipient %>
+</p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @score.project_id %>
+</p>
+
+<p>
+  <strong>Score:</strong>
+  <%= @score.score %>
+</p>
+
+<%= link_to 'Edit', edit_score_path(@score) %> |
+<%= link_to 'Back', scores_path %>

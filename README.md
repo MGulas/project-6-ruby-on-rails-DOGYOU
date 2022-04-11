@@ -1,24 +1,36 @@
-# README
+# Project 6: DOGYOU
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a Ruby on Rails based peer evaluation tool, similar to the popular CATME tool.
 
-Things you may want to cover:
+# Dependencies
 
-* Ruby version
+This project was built using:
 
-* System dependencies
+- Ruby v3.0.1
+- Rails v6.1
+- Node v16
 
-* Configuration
+# How to Access Website
 
-* Database creation
+maybe heroku? 
 
-* Database initialization
+# How to Run Tests
 
-* How to run the test suite
+Use command
+```bash
+rails test
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+# Usage
 
-* Deployment instructions
+\< insert a lot of images here >
 
-* ...
+# Contributions
+
+Michael Gulassy
+
+Landon Holland
+
+Hunter Mills
+
+Cathyna Tong
