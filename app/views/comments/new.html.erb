@@ -1,45 +1,5 @@
 <h1>New Comment</h1>
 
-<%= form_with(model: @comment) do |form| %>
-  <% if @comment.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
-
-      <ul>
-        <% @comment.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :creator %>
-    <% if current_user %>
-        <%= form.text_field :creator, value: current_user.email_address%>
-    <% else %>
-        <%= form.text_field :creator %>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= form.label :recipient %>
-    <%= form.text_field :recipient %>
-  </div>
-
-  <div class="field">
-    <%= form.label :project_id %>
-    <%= form.number_field :project_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :comment %>
-    <%= form.text_area :comment %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+<%= render 'form', score: @comment %>
 
 <%= link_to 'Back', comments_path %>
