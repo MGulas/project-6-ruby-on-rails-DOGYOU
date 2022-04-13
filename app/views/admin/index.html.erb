@@ -1,0 +1,45 @@
+<% provide(:title, "Admin") %>
+<h1>Admin Page</h1>
+
+<p> View Students <p>
+<ul>
+    <% for user in User.all %>
+        <% if !user.admin then %>
+            <li><%= user.first_name + " " + user.last_name%></li>
+        <% end %>
+    <% end %>
+    <li>TODO: Sorting by team or section or whatever</li>
+</ul>
+
+<p> View Teams <p>
+<ul>
+    <% for team in Team.all %>
+        <li><%= team.team_name %></li>
+    <% end %>
+</ul>
+
+<p> Add Students to Teams <p>
+<ul>
+    <li>Students not in a team: </li>
+    <ul>
+        <% for user in User.all %>
+            <% if !user.admin && user.team_number == nil then %>
+                <li><%= user.first_name + " " + user.last_name%></li>
+            <% end %>
+        <% end %>
+    </ul>
+    <li> TODO: make this happen </li>
+</ul>
+
+<p> View Projects and Scores <p>
+<ul>
+    <% for project in Project.all %>
+        <li><%= project.p_name %></li>
+    <% end %>
+    <li> TODO: scores </li>
+</ul>
+
+<p> Add Comments to Projects <p>
+<ul>
+    <li> TODO: make this happen </li>
+</ul>
