@@ -13,17 +13,21 @@
 
   <div class="field">
     <%= form.label :creator %>
-    <%= form.text_field :creator %>
+    <% if current_user %>
+        <%= form.text_field :creator, value: current_user.email_address%>
+    <% else %>
+        <%= form.text_field :creator %>
+    <% end %>
   </div>
 
   <div class="field">
     <%= form.label :recipient %>
-    <%= form.text_field :recipient %>
+    <%= form.select(:recipient, options_from_collection_for_select(User.where(team_number: current_user.team_number), :email_address, :email_address)) %>
   </div>
 
   <div class="field">
     <%= form.label :project_id %>
-    <%= form.number_field :project_id %>
+    <%= form.select(:project_id, options_from_collection_for_select(Project.all, :p_number, :p_name)) %>
   </div>
 
   <div class="field">
