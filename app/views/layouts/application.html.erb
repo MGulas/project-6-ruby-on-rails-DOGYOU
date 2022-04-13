@@ -19,6 +19,9 @@
     <% if logged_in? %>
       <%= link_to "Profile", current_user %>
       <%= link_to "Log Out", logout_path, method: :delete %>
+      <% if admin? %>
+        <%= link_to "Admin Page", admin_path %>
+      <% end %>
     <% end %>
     <%= yield %>
   </body>
