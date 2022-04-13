@@ -24,10 +24,12 @@
     <ul>
         <% for user in User.all %>
             <% if !user.admin && user.team_number == nil then %>
-                <li><%= user.first_name + " " + user.last_name%></li>
+                <li><%= user.email_address + ": " + user.first_name + " " + user.last_name %></li>
             <% end %>
         <% end %>
     </ul>
+    <li> Enter student email and team number: </li>
+    
     <li> TODO: make this happen </li>
 </ul>
 
