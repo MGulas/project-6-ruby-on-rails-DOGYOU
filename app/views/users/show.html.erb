@@ -16,18 +16,14 @@
 </p>
 
 <p>
-  <strong>Admin:</strong>
-  <%= @user.admin %>
-</p>
-
-<p>
-  <strong>Section:</strong>
+  <strong>Section(s):</strong>
   <%= @user.section_id %>
 </p>
 
+
 <p>
-  <strong>Team number:</strong>
-  <%= @user.team_number %>
+  <strong>Team(s):</strong>
+  <%= @user.team %>
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
