@@ -6,12 +6,6 @@ class ProjectsController < ApplicationController
     @projects = Project.all
   end
 
-  def authenticate!
-    if !admin?
-        redirect_to '/', :notice => 'User not authorized to view this page'
-    end
-  end
-
   # GET /projects/1 or /projects/1.json
   def show
   end
