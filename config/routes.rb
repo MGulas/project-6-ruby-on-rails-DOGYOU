@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'static_pages/home'
   get 'admin/index'
   resources :courses
   resources :teams

@@ -16,6 +16,10 @@
 
 
   <body>
+    <% if !logged_in? %>
+      <%= render 'layouts/signup_header' %>
+    <% end %>
+
     <% if logged_in? %>
       <%= link_to "Profile", current_user %>
       <%= link_to "Log Out", logout_path, method: :delete %>
@@ -23,6 +27,7 @@
         <%= link_to "Admin Page", admin_path %>
       <% end %>
     <% end %>
+    
     <%= yield %>
   </body>
 </html>
