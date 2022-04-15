@@ -31,6 +31,16 @@
     <%= form.number_field :project_id %>
   </div>
 
+  <div class="field">
+    <%= form.label "Add Team Members" %><br />
+    <%= form.collection_check_boxes :user_ids, User.all, :id, :first_name do |box| %>
+      <div class="collection-check-box">
+        <%= box.check_box %>
+        <%= box.label %>
+      </div>
+    <% end %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
