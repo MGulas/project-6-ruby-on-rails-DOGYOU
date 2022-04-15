@@ -3,7 +3,11 @@ class CommentsController < ApplicationController
 
   # GET /comments or /comments.json
   def index
-    @comments = Comment.all
+    if current_user.admin? then
+      @comments = Comment.all
+    else
+      @comments = Comment.where(["creator = :email or recipient = :email", {email: current_user.email_address}])
+    end
   end
 
   # GET /comments/1 or /comments/1.json
