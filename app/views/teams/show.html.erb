@@ -22,7 +22,9 @@
 
 <p>
   <strong>Team members:</strong>
-  <%= @team.users %>
+  <% @team.user_ids.each do |id| %>
+    <%= User.find(id).first_name %>
+  <% end %>
 </p>
 
 <%= link_to 'Edit', edit_team_path(@team) %> |

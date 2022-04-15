@@ -23,13 +23,21 @@
     <li>Students not in a team: </li>
     <ul>
         <% for user in User.all %>
-            <% if !user.admin && user.team_number == nil then %>
+            <% if !user.admin && user.teams.size == 0 then %>
                 <li><%= user.email_address + ": " + user.first_name + " " + user.last_name %></li>
             <% end %>
         <% end %>
     </ul>
     <li> Enter student email and team number: </li>
-    
+    <%= form_with(url: admin_add_user_to_team_url, local: true) do |f| %>
+        <%= f.label :email_address %>
+        <%= f.email_field :email_address, class: 'form-control' %>
+        <br>
+        <%= f.label :team_number %>
+        <%= f.number_field :team_number, class: 'form-control' %>
+        <br>
+        <%= f.submit "Add Student to Team", class: "btn btn-primary" %>
+    <% end %>
     <li> TODO: make this happen </li>
 </ul>
 

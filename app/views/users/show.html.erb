@@ -20,10 +20,13 @@
   <%= @user.section_id %>
 </p>
 
-
 <p>
   <strong>Team(s):</strong>
-  <%= @user.team %>
+  <ul>
+    <% for team in @user.teams %>
+      <li><%= team.team_name %></li>
+    <% end %>
+  </ul>
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |

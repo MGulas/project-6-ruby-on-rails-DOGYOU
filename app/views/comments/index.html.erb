@@ -16,7 +16,7 @@
   <tbody>
     <% @comments.each do |comment| %>
       <tr>
-        <td><%= comment.creator %></td>
+        <td><%= comment.creator == current_user.email_address ? comment.creator : "Anonymous" %></td>
         <td><%= comment.recipient %></td>
         <td><%= comment.project_id %></td>
         <td><%= comment.comment %></td>
