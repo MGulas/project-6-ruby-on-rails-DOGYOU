@@ -23,7 +23,13 @@
 
 <p>
   <strong>Team(s):</strong>
-  <%= @user.team %>
+  <ul>
+    <% for team in Team.all %>
+      <% if team.team_number == @user.team_number %>
+        <li><%= team.team_name %></li>
+      <% end %>
+    <% end %>
+  </ul>
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
