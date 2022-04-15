@@ -8,6 +8,7 @@ class CommentsController < ApplicationController
     else
       @comments = Comment.where(["creator = :email or recipient = :email", {email: current_user.email_address}])
     end
+    @comments = @comments.where(project_id: params[:p]) if params[:p]
   end
 
   # GET /comments/1 or /comments/1.json
