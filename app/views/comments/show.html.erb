@@ -20,5 +20,7 @@
   <%= @comment.comment %>
 </p>
 
+<%= link_to_if current_user.admin?, 'Assign score to recipient', { controller: 'scores', action: 'new', recipient: @comment.recipient, project_id: @comment.project_id } %>
+
 <%= link_to 'Edit', edit_comment_path(@comment) %> |
 <%= link_to 'Back', comments_path %>

@@ -14,6 +14,8 @@ class ScoresController < ApplicationController
   # GET /scores/new
   def new
     @score = Score.new
+    @score.project_id = params[:project_id] if params[:project_id]
+    @score.recipient = params[:recipient] if params[:recipient]
   end
 
   # GET /scores/1/edit

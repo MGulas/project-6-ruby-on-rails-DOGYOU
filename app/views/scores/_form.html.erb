@@ -22,12 +22,12 @@
 
   <div class="field">
     <%= form.label :recipient %>
-    <%= form.select(:recipient, options_from_collection_for_select(User.all, :email_address, :email_address)) %>
+    <%= form.select(:recipient, options_from_collection_for_select(User.all, :email_address, :email_address, params[:recipient])) %>
   </div>
 
   <div class="field">
     <%= form.label :project_id %>
-    <%= form.select(:project_id, options_from_collection_for_select(Project.all, :p_number, :p_name)) %>
+    <%= form.select(:project_id, options_from_collection_for_select(Project.all, :p_number, :p_name, params[:project_id])) %>
   </div>
 
   <div class="field">
