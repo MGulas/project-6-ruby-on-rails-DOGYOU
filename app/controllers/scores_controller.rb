@@ -4,6 +4,7 @@ class ScoresController < ApplicationController
   # GET /scores or /scores.json
   def index
     @scores = Score.all
+    @scores = @scores.where(project_id: params[:p]) if params[:p]
   end
 
   # GET /scores/1 or /scores/1.json
@@ -13,6 +14,8 @@ class ScoresController < ApplicationController
   # GET /scores/new
   def new
     @score = Score.new
+    @score.project_id = params[:project_id] if params[:project_id]
+    @score.recipient = params[:recipient] if params[:recipient]
   end
 
   # GET /scores/1/edit
