@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DOGYOU</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <% flash.each do |key, value| %>
+    <div class="flash <%= key %>"><%= value %></div>
+  <% end %>
+
+
+  <body>
+    <% if logged_in? %>
+      <%= link_to "Profile", current_user %>
+      <%= link_to "Log Out", logout_path, method: :delete %>
+      <% if admin? %>
+        <%= link_to "Admin Page", admin_path %>
+      <% end %>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>

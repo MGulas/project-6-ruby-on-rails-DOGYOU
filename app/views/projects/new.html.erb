@@ -1,0 +1,31 @@
+<% authenticate! %>
+<% provide(:title, 'Create Project') %>
+<h1> Create Project </h1>
+
+<div class ="row">
+    <div class = "col-md-6 col-md-offset-3">
+        <%= form_with(model: @project, local:true) do |f| %>
+            <% if @project.errors.any? %>
+                <div id="error_explanation">
+                    <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being made:</h2>
+
+                    <ul>
+                        <% @project.errors.each do |error| %>
+                        <li><%= error.full_message %></li>
+                        <% end %>
+                    </ul>
+                </div>
+            <% end %>
+
+            <%= f.label :p_number %>
+            <%= f.text_field :p_number %>
+
+            <%= f.label :p_name %>
+            <%= f.text_field :p_name %>
+
+            <br>
+
+            <%= f.submit "Create Project", class: "btn btn-primary" %>
+        <% end %>
+    </div>
+</div>
