@@ -16,8 +16,12 @@
 </p>
 
 <p>
-  <strong>Project:</strong>
-  <%= @team.project_id %>
+  <strong>Project(s):</strong>
+  <ul>
+    <% for project in @team.projects %>
+      <li><%= project.p_name %></li>
+    <% end %>
+  </ul>
 </p>
 
 <p>

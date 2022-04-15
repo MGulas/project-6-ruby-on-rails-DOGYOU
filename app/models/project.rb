@@ -1,7 +1,8 @@
 class Project < ApplicationRecord
+    has_and_belongs_to_many :sections
     has_many :scores
     has_many :comments
-    has_many :teams
+    has_and_belongs_to_many :teams
 
     validates :p_number, presence: true, uniqueness: true
     validates :p_name, presence: true
