@@ -1,6 +1,4 @@
 class Project < ApplicationRecord
-    belongs_to :course, :foreign_key => "section_id"
-
     has_many :scores
     has_many :comments
     has_many :teams
