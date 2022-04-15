@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :comments
   resources :scores
   resources :users
-  root 'sessions#new'
+  root 'static_pages#home'
   get '/signup', to: 'users#new'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
