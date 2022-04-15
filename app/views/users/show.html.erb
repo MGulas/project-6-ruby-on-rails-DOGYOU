@@ -24,10 +24,8 @@
 <p>
   <strong>Team(s):</strong>
   <ul>
-    <% for team in Team.all %>
-      <% if team.team_number == @user.team_number %>
-        <li><%= team.team_name %></li>
-      <% end %>
+    <% for team in @user.teams %>
+      <li><%= team.team_name %></li>
     <% end %>
   </ul>
 </p>

@@ -23,7 +23,7 @@
     <li>Students not in a team: </li>
     <ul>
         <% for user in User.all %>
-            <% if !user.admin && user.team_number == nil then %>
+            <% if !user.admin && user.teams.size == 0 then %>
                 <li><%= user.email_address + ": " + user.first_name + " " + user.last_name %></li>
             <% end %>
         <% end %>
