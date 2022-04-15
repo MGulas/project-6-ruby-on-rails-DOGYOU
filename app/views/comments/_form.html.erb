@@ -22,12 +22,20 @@
 
   <div class="field">
     <%= form.label :recipient %>
-    <%= form.select(:recipient, options_from_collection_for_select(User.where(team_number: current_user.team_number), :email_address, :email_address)) %>
+    <% all_users = [] %>
+    <% current_user.teams.each do |team| %>
+      <% all_users.concat team.users %>
+    <% end %>
+    <%= form.select(:recipient, options_from_collection_for_select(all_users.uniq, :email_address, :email_address)) %>
   </div>
 
   <div class="field">
     <%= form.label :project_id %>
-    <%= form.select(:project_id, options_from_collection_for_select(Project.all, :p_number, :p_name)) %>
+    <% all_projects = [] %>
+    <% current_user.teams.each do |team| %>
+      <% all_projects << Project.find(team.project_id) %>
+    <% end %>
+    <%= form.select(:project_id, options_from_collection_for_select(all_projects.uniq, :p_number, :p_name)) %>
   </div>
 
   <div class="field">
