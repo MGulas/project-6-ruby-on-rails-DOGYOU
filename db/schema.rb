@@ -53,8 +53,15 @@ ActiveRecord::Schema.define(version: 2022_04_15_225114) do
   create_table "courses_users", force: :cascade do |t|
     t.integer "course_id"
     t.integer "user_id"
-    t.index ["section_id"], name: "index_sections_users_on_section_id"
-    t.index ["user_id"], name: "index_sections_users_on_user_id"
+    t.index ["course_id"], name: "index_courses_users_on_course_id"
+    t.index ["user_id"], name: "index_courses_users_on_user_id"
+  end
+
+  create_table "courses_projects", force: :cascade do |t|
+    t.integer "course_id"
+    t.integer "project_id"
+    t.index ["course_id"], name: "index_courses_projects_on_course_id"
+    t.index ["project_id"], name: "index_courses_projects_on_project_id"
   end
 
   create_table "teams", force: :cascade do |t|

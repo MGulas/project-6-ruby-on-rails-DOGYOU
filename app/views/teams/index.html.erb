@@ -18,7 +18,11 @@
       <tr>
         <td><%= team.team_number %></td>
         <td><%= team.team_name %></td>
-        <td><%= team.projects[0] %></td>
+        <td>
+          <% for project in team.projects %>
+            <%= project.p_name %>
+          <% end %>
+        </td>
         <td><%= link_to 'Show', team %></td>
         <td><%= link_to 'Edit', edit_team_path(team) %></td>
         <td><%= link_to 'Destroy', team, method: :delete, data: { confirm: 'Are you sure?' } %></td>

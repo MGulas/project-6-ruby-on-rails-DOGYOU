@@ -22,6 +22,16 @@
   </div>
 
   <div class="field">
+    <%= form.label "Choose Sections" %><br />
+    <%= form.collection_check_boxes :course_ids, Course.all, :id, :course_id do |box| %>
+      <div class="collection-check-box">
+        <%= box.check_box %>
+        <%= box.label %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="field">
     <%= form.label "Add Teams" %><br />
     <%= form.collection_check_boxes :team_ids, Team.all, :id, :team_name do |box| %>
       <div class="collection-check-box">
