@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2022_04_15_225114) do
   end
 
   create_table "courses", force: :cascade do |t|
-    t.integer "section_id"
+    t.integer "course_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -50,11 +50,16 @@ ActiveRecord::Schema.define(version: 2022_04_15_225114) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "courses_users", force: :cascade do |t|
+    t.integer "course_id"
+    t.integer "user_id"
+    t.index ["section_id"], name: "index_sections_users_on_section_id"
+    t.index ["user_id"], name: "index_sections_users_on_user_id"
+  end
+
   create_table "teams", force: :cascade do |t|
     t.integer "team_number"
-    t.integer "section_id"
     t.string "team_name"
-    t.integer "project_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -71,7 +76,6 @@ ActiveRecord::Schema.define(version: 2022_04_15_225114) do
     t.string "first_name"
     t.string "last_name"
     t.boolean "admin"
-    t.integer "section_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

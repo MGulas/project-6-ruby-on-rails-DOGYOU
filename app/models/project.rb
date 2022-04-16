@@ -1,5 +1,5 @@
 class Project < ApplicationRecord
-    has_and_belongs_to_many :sections
+    has_and_belongs_to_many :courses
     has_many :scores
     has_many :comments
     has_and_belongs_to_many :teams

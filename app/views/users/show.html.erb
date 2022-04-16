@@ -17,7 +17,11 @@
 
 <p>
   <strong>Section(s):</strong>
-  <%= @user.section_id %>
+  <ul>
+    <% for section in @user.courses %>
+      <li><%= section.course_id %></li>
+    <% end %>
+  </ul>
 </p>
 
 <p>
