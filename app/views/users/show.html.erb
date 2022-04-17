@@ -17,7 +17,11 @@
 
 <p>
   <strong>Section(s):</strong>
-  <%= @user.section_id %>
+  <ul>
+    <% for section in @user.courses %>
+      <li><%= section.course_id %></li>
+    <% end %>
+  </ul>
 </p>
 
 <p> Join Section: </p>
@@ -32,10 +36,8 @@
 <p>
   <strong>Team(s):</strong>
   <ul>
-    <% for team in Team.all %>
-      <% if team.team_number == @user.team_number %>
-        <li><%= team.team_name %></li>
-      <% end %>
+    <% for team in @user.teams %>
+      <li><%= team.team_name %></li>
     <% end %>
   </ul>
 </p>

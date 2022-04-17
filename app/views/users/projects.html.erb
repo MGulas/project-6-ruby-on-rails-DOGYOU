@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Project(s):</strong>
+  <% @user.teams.each do |team| %>
+    <% team.projects.each do |project| %>
+        <%= project.p_name %>
+    <% end %>
+  <% end %>
+</p>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

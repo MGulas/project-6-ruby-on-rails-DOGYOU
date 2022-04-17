@@ -1,3 +1,5 @@
 class Course < ApplicationRecord
-    validates :section_id, presence: true
+    has_and_belongs_to_many :users
+
+    validates :course_id, presence: true
 end

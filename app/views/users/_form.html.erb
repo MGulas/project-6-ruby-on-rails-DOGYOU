@@ -1,10 +1,10 @@
-<%= form_with(model: user) do |form| %>
-  <% if user.errors.any? %>
+<%= form_with(model: @user) do |form| %>
+  <% if @user.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
       <ul>
-        <% user.errors.each do |error| %>
+        <% @user.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
@@ -15,6 +15,17 @@
     <%= form.label :email_address %>
     <%= form.text_field :email_address %>
   </div>
+
+  <div class="field">
+    <%= form.label :password %>
+    <%= form.password_field :password %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password_confirmation, "Confirmation" %>
+    <%= form.password_field :password_confirmation %>
+  </div>
+
 
   <div class="field">
     <%= form.label :first_name %>
@@ -32,13 +43,13 @@
   </div>
 
   <div class="field">
-    <%= form.label :section_id %>
-    <%= form.number_field :section_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :team_number %>
-    <%= form.number_field :team_number %>
+    <%= form.label "Join Sections" %><br />
+    <%= form.collection_check_boxes :course_ids, Course.all, :id, :course_id do |box| %>
+      <div class="collection-check-box">
+        <%= box.check_box %>
+        <%= box.label %>
+      </div>
+    <% end %>
   </div>
 
   <div class="actions">
