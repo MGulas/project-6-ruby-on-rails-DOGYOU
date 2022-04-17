@@ -59,8 +59,18 @@ class UsersController < ApplicationController
   end
 
   def add_user_to_section
-    @user = User.find(params[:id])
-    user.update_attribute(:section_number, params[:section_number])
+    @user = User.find_by(email_address: params[:email_address].downcase)
+    @course = Course.find(params[:course_id])
+    #@user.update_attribute(:section_number, params[:section_number])
+    if @user && @course
+      @user.courses << @course
+      @course.users << @user
+      redirect_to user_url(@user), notice: "User was successfully added to section"
+    else
+      # awkward
+      flash.now[:danger] = 'Invalid user or section'
+      render 'index'
+    end
   end
 
   private
@@ -71,6 +81,6 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:email_address, :first_name, :last_name, :admin, :password, :password_confirmation, course_ids: [])
+      params.require(:user).permit(:email_address, :first_name, :last_name, :admin, :section_id, :team_number)
     end
 end
