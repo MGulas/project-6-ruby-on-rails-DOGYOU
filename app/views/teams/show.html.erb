@@ -6,18 +6,17 @@
 </p>
 
 <p>
-  <strong>Section:</strong>
-  <%= @team.section_id %>
-</p>
-
-<p>
   <strong>Team name:</strong>
   <%= @team.team_name %>
 </p>
 
 <p>
-  <strong>Project:</strong>
-  <%= @team.project_id %>
+  <strong>Project(s):</strong>
+  <ul>
+    <% for project in @team.projects %>
+      <li><%= project.p_name %></li>
+    <% end %>
+  </ul>
 </p>
 
 <p>

@@ -1,5 +1,6 @@
 class User < ApplicationRecord
     has_and_belongs_to_many :teams
+    has_and_belongs_to_many :courses
 
     validates :first_name, presence: true, length: { maximum: 50 }
     validates :last_name, presence: true, length: { maximum: 50 }
