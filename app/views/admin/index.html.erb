@@ -4,14 +4,16 @@
 <p> View Students by Team <p>
 <ul>
     <% for team in Team.all %>
-        <li><%= link_to team.team_name, team %></li>
-        <ul>
-            <% for user in team.users %>
-                <% if !user.admin %>
-                    <li><%= link_to user.first_name + " " + user.last_name, user %></li>
+        <% if team.users != [] %>
+            <li><%= link_to team.team_name, team %></li>
+            <ul>
+                <% for user in team.users %>
+                    <% if !user.admin %>
+                        <li><%= link_to user.first_name + " " + user.last_name, user %></li>
+                    <% end %>
                 <% end %>
-            <% end %>
-        </ul>
+            </ul>
+        <% end %>
     <% end %>
 </ul>
 
@@ -19,7 +21,7 @@
 <ul>
     <% for user in User.all %>
         <% if !user.admin && user.teams == [] %>
-            <li><%= link_to user.first_name + " " + user.last_name, user %></li>
+            <li><%= link_to user.first_name + " " + user.last_name + ": " + user.email_address, user %></li>
         <% end %>
     <% end %>
 </ul>
@@ -32,21 +34,24 @@
 <p> View Projects and Comments <p>
 <ul>
     <% for project in Project.all %>
-        <li><%= project.teams.first.team_name + ": " + project.p_name %></li>
+        <% if project.teams != [] %>
+            <li><%= project.teams.first.team_name + ": " + project.p_name %></li>
 
-        <ul>
-            <li> Comments: </li>
-            <% for comment in project.comments %>
-                <li><%= "From " + comment.creator + " to " + comment.recipient + ": " + comment.comment%></li>
-            <% end %>
-        </ul>
-        
-        <ul>
-            <li> Scores: </li>
-            <% for score in project.scores %>
-                <li><%= "From " + score.creator + " to " + score.recipient + ": " + score.score%></li>
-            <% end %>
-        </ul>
+            <ul>
+                <li> Comments: </li>
+                <% for comment in project.comments %>
+                    <li><%= "From " + comment.creator + " to " + comment.recipient + ": " + comment.comment%></li>
+                <% end %>
+            </ul>
+            
+            <ul>
+                <li> Scores: </li>
+                <% for score in project.scores %>
+                    <li><%= "From " + score.creator + " to " + score.recipient + ": " + score.score%></li>
+                <% end %>
+            </ul>
+
+        <% end %>
 
     <% end %>
 </ul>

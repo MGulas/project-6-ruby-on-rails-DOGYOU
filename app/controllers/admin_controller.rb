@@ -7,7 +7,7 @@ class AdminController < ApplicationController
     team = Team.find_by (params[:team_number])
     if user && team
       # add to team
-      add_to_team(user, team)
+      user.teams << team
       redirect_to admin_url
     else
       # create error message
