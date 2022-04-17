@@ -2,4 +2,39 @@
 
 <%= render 'form', team: @user %>
 
+<<<<<<< HEAD
 <%= link_to 'Back', users_path %>
+=======
+                <ul>
+                    <% @user.errors.each do |error| %>
+                    <li><%= error.full_message %></li>
+                    <% end %>
+                </ul>
+                </div>
+            <% end %>
+
+            <%= f.label :first_name %>
+            <%= f.text_field :first_name %>
+
+            <%= f.label :last_name %>
+            <%= f.text_field :last_name %>
+
+            <%= f.label :email_address %>
+            <%= f.text_field :email_address %>
+
+            <%= f.label :admin %>
+            <%= f.check_box :admin %>
+
+            <%= f.label :password %>
+            <%= f.password_field :password %>
+
+            <%= f.label :password_confirmation, "Confirmation" %>
+            <%= f.password_field :password_confirmation %>
+
+            <br>
+
+            <%= f.submit "Create my account", class: "btn btn-primary" %>
+        <% end %>
+    </div>
+</div>
+>>>>>>> 43680251ed4b161590db9fea6ced35a9c1c7af38

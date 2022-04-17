@@ -9,6 +9,7 @@ $gray-medium-light: #eaeaea;
 
 body {
   padding-top: 60px;
+  font-family: 'Roboto', 'Calibri', sans-serif !important;
 }
 
 section {
@@ -91,5 +92,23 @@ footer {
       float: left;
       margin-left: 15px;
     }
+  }
+}
+
+.btn-primary{
+  background-color: lightblue !important;
+  color: black;
+  &:hover {
+    background-color: darkgray;
+    color: white;
+    text-decoration: none;
+  }
+}
+
+.navbar-custom {
+  background-color: lightblue;
+  color: white;
+  &:hover {
+    color: black;
   }
 }
