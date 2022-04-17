@@ -58,6 +58,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def add_user_to_section
+    @user = User.find(params[:id])
+    user.update_attribute(:section_number, params[:section_number])
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
