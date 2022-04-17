@@ -7,14 +7,27 @@
         <li><%= link_to team.team_name, team %></li>
         <ul>
             <% for user in team.users %>
-                <li><%= link_to user.first_name + " " + user.last_name, user %></li>
+                <% if !user.admin %>
+                    <li><%= link_to user.first_name + " " + user.last_name, user %></li>
+                <% end %>
             <% end %>
         </ul>
     <% end %>
 </ul>
 
+<p> View Students not in a Team </p>
+<ul>
+    <% for user in User.all %>
+        <% if !user.admin && user.teams == [] %>
+            <li><%= link_to user.first_name + " " + user.last_name, user %></li>
+        <% end %>
+    <% end %>
+</ul>
+
 <p> Bulk add students </p>
-<p>TODO: ? </p>
+<ul>
+    <li> TODO: ? </li>
+</ul>
 
 <p> View Projects and Comments <p>
 <ul>

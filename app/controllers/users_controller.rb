@@ -64,7 +64,6 @@ class UsersController < ApplicationController
     #@user.update_attribute(:section_number, params[:section_number])
     if @user && @course
       @user.courses << @course
-      @course.users << @user
       redirect_to user_url(@user), notice: "User was successfully added to section"
     else
       # awkward
@@ -81,6 +80,6 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:email_address, :first_name, :last_name, :admin, :section_id, :team_number)
+      params.require(:user).permit(:email_address, :first_name, :last_name, :admin, :password, :password_confirmation, course_ids: [])
     end
 end
