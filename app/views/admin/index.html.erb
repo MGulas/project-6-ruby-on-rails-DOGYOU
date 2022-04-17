@@ -1,23 +1,49 @@
 <% provide(:title, "Admin") %>
 <h1>Admin Page</h1>
 
-<p> View Students <p>
-<ul>
-    <% for user in User.all %>
-        <% if !user.admin then %>
-            <li><%= user.first_name + " " + user.last_name%></li>
-        <% end %>
-    <% end %>
-    <li>TODO: Sorting by team or section or whatever</li>
-</ul>
-
-<p> View Teams <p>
+<p> View Students by Team <p>
 <ul>
     <% for team in Team.all %>
-        <li><%= team.team_name %></li>
+        <li><%= link_to team.team_name, team %></li>
+        <ul>
+            <% for user in team.users %>
+                <li><%= link_to user.first_name + " " + user.last_name, user %></li>
+            <% end %>
+        </ul>
     <% end %>
 </ul>
 
+<p> Bulk add students </p>
+<p>TODO: ? </p>
+
+<p> View Projects and Comments <p>
+<ul>
+    <% for project in Project.all %>
+        <li><%= project.teams.first.team_name + ": " + project.p_name %></li>
+
+        <ul>
+            <li> Comments: </li>
+            <% for comment in project.comments %>
+                <li><%= "From " + comment.creator + " to " + comment.recipient + ": " + comment.comment%></li>
+            <% end %>
+        </ul>
+        
+        <ul>
+            <li> Scores: </li>
+            <% for score in project.scores %>
+                <li><%= "From " + score.creator + " to " + score.recipient + ": " + score.score%></li>
+            <% end %>
+        </ul>
+
+    <% end %>
+</ul>
+
+<p> Add Scores to Users <p>
+<ul>
+    <li> TODO: make this happen </li>
+</ul>
+
+<h1>DEPRECATED</h1>
 <p> Add Students to Teams <p>
 <ul>
     <li>Students not in a team: </li>
@@ -38,18 +64,5 @@
         <br>
         <%= f.submit "Add Student to Team", class: "btn btn-primary" %>
     <% end %>
-    <li> TODO: make this happen </li>
 </ul>
 
-<p> View Projects and Scores <p>
-<ul>
-    <% for project in Project.all %>
-        <li><%= project.p_name %></li>
-    <% end %>
-    <li> TODO: scores </li>
-</ul>
-
-<p> Add Comments to Projects <p>
-<ul>
-    <li> TODO: make this happen </li>
-</ul>
