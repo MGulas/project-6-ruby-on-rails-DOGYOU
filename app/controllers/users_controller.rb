@@ -62,7 +62,7 @@ class UsersController < ApplicationController
     @user = User.find_by(email_address: params[:email_address].downcase)
     @course = Course.find(params[:course_id])
     #@user.update_attribute(:section_number, params[:section_number])
-    if @user && @course
+    if @user && @course 
       @user.courses << @course
       redirect_to user_url(@user), notice: "User was successfully added to section"
     else

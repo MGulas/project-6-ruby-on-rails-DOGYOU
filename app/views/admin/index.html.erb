@@ -47,7 +47,7 @@
             <ul>
                 <li> Scores: </li>
                 <% for score in project.scores %>
-                    <li><%= "From " + score.creator + " to " + score.recipient + ": " + score.score%></li>
+                    <li><%= "From " + score.creator + " to " + score.recipient + ": " + score.score.to_s %></li>
                 <% end %>
             </ul>
 

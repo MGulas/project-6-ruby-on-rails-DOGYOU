@@ -33,7 +33,9 @@
     <%= form.label :project_id %>
     <% all_projects = [] %>
     <% current_user.teams.each do |team| %>
-      <% all_projects << Project.find(team.project_id) %>
+      <% team.projects.each do |project|%>
+        <% all_projects << project %>
+      <% end %>
     <% end %>
     <%= form.select(:project_id, options_from_collection_for_select(all_projects.uniq, :p_number, :p_name)) %>
   </div>
