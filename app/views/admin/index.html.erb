@@ -9,7 +9,7 @@
             <ul>
                 <% for user in team.users %>
                     <% if !user.admin %>
-                        <li><%= link_to user.first_name + " " + user.last_name, user %></li>
+                        <li><%= link_to user.email_address + ": " + user.first_name + " " + user.last_name, user %></li>
                     <% end %>
                 <% end %>
             </ul>
@@ -26,10 +26,62 @@
     <% end %>
 </ul>
 
-<p> Bulk add students </p>
+<p><%= link_to "Create Teams", root_url + "/teams/new" %></p>
+
+<p> Add Students to Teams <p>
 <ul>
-    <li> TODO: ? </li>
+    <li> Enter student email and team number: </li>
+    <%= form_with(url: admin_add_user_to_team_url, local: true) do |f| %>
+        <%= f.label :email_address %>
+        <%= f.email_field :email_address, class: 'form-control' %>
+        <br>
+        <%= f.label :team_number %>
+        <%= f.number_field :team_number, class: 'form-control' %>
+        <br>
+        <%= f.submit "Add Student to Team", class: "btn btn-primary" %>
+    <% end %>
 </ul>
+
+<p> View Students by Section </p>
+<ul>
+    <% for section in Course.all %>
+        <% if section.users != [] %>
+            <li><%= link_to section.course_id, section %></li>
+            <ul>
+                <% for user in section.users %>
+                    <% if !user.admin %>
+                        <li><%= link_to user.email_address + ": " + user.first_name + " " + user.last_name, user %></li>
+                    <% end %>
+                <% end %>
+            </ul>
+        <% end %>
+    <% end %>
+</ul>
+
+<p> View Students not in a Section </p>
+<ul>
+    <% for user in User.all %>
+        <% if !user.admin && user.courses.size == 0 %>
+            <li><%= link_to user.email_address + ": " + user.first_name + " " + user.last_name, user %></li>
+        <% end %>
+    <% end %>
+</ul>
+
+<p><%= link_to "Create Sections", root_url + "/courses/new" %></p>
+
+<p> Add Student to a Section </p>
+<ul>
+    <li> Enter student email and section number: </li>
+    <%= form_with(url: admin_add_user_to_section_url, local: true) do |f| %>
+        <%= f.label :email_address %>
+        <%= f.email_field :email_address, class: 'form-control' %>
+        <%= f.label :course_id %>
+        <%= f.select :course_id, Course.all.map { |s| [s.course_id, s.id] }, {}, { class: 'form-control' } %>
+        <br>
+        <%= f.submit "Add Student to Section", class: "btn btn-primary" %>
+    <% end %>
+</ul>
+
 
 <p> View Projects and Comments <p>
 <ul>
@@ -59,28 +111,5 @@
 <p> Add Scores to Users <p>
 <ul>
     <li> TODO: make this happen </li>
-</ul>
-
-<h1>DEPRECATED</h1>
-<p> Add Students to Teams <p>
-<ul>
-    <li>Students not in a team: </li>
-    <ul>
-        <% for user in User.all %>
-            <% if !user.admin && user.teams.size == 0 then %>
-                <li><%= user.email_address + ": " + user.first_name + " " + user.last_name %></li>
-            <% end %>
-        <% end %>
-    </ul>
-    <li> Enter student email and team number: </li>
-    <%= form_with(url: admin_add_user_to_team_url, local: true) do |f| %>
-        <%= f.label :email_address %>
-        <%= f.email_field :email_address, class: 'form-control' %>
-        <br>
-        <%= f.label :team_number %>
-        <%= f.number_field :team_number, class: 'form-control' %>
-        <br>
-        <%= f.submit "Add Student to Team", class: "btn btn-primary" %>
-    <% end %>
 </ul>
 
