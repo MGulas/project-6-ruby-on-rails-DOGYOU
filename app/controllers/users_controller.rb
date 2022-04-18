@@ -58,6 +58,26 @@ class UsersController < ApplicationController
     end
   end
 
+  def add_user_to_section
+    @user = User.find_by(email_address: params[:email_address].downcase)
+    @course = Course.find(params[:course_id])
+    #@user.update_attribute(:section_number, params[:section_number])
+    if @user && @course
+      if @user.courses.include?(@course)
+        # no no
+        flash.now[:danger] = 'User is already in this section'
+        render 'show'
+      else 
+        @user.courses << @course
+        redirect_to user_url(@user), notice: "User was successfully added to section"
+      end
+    else
+      # awkward
+      flash.now[:danger] = 'Invalid user or section'
+      render 'show'
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user

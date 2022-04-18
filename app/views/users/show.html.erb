@@ -24,6 +24,16 @@
   </ul>
 </p>
 
+<p> Join Section: </p>
+<%= form_with(url: user_add_user_to_section_url, local: true) do |f| %>
+  <%= f.label :course_id %>
+  <%= f.select :course_id, Course.all.map { |s| [s.course_id, s.id] }, {}, { class: 'form-control' } %>
+  <%= f.hidden_field :email_address, value: @user.email_address %>
+  <br>
+  <%= f.submit "Join Section", class: "btn btn-primary" %>
+<% end %>
+
+
 <p>
   <strong>Team(s):</strong>
   <ul>

@@ -1,33 +1,37 @@
 <% provide(:title, "Admin") %>
 <h1>Admin Page</h1>
 
-<p> View Students <p>
-<ul>
-    <% for user in User.all %>
-        <% if !user.admin then %>
-            <li><%= user.first_name + " " + user.last_name%></li>
-        <% end %>
-    <% end %>
-    <li>TODO: Sorting by team or section or whatever</li>
-</ul>
+<h2> Teams </h2>
 
-<p> View Teams <p>
+<p> View Students by Team <p>
 <ul>
     <% for team in Team.all %>
-        <li><%= team.team_name %></li>
+        <% if team.users != [] %>
+            <li><%= link_to team.team_name, team %></li>
+            <ul>
+                <% for user in team.users %>
+                    <% if !user.admin %>
+                        <li><%= link_to user.email_address + ": " + user.first_name + " " + user.last_name, user %></li>
+                    <% end %>
+                <% end %>
+            </ul>
+        <% end %>
     <% end %>
 </ul>
+
+<p> View Students not in a Team </p>
+<ul>
+    <% for user in User.all %>
+        <% if !user.admin && user.teams == [] %>
+            <li><%= link_to user.first_name + " " + user.last_name + ": " + user.email_address, user %></li>
+        <% end %>
+    <% end %>
+</ul>
+
+<p><%= link_to "Create Teams", root_url + "/teams/new" %></p>
 
 <p> Add Students to Teams <p>
 <ul>
-    <li>Students not in a team: </li>
-    <ul>
-        <% for user in User.all %>
-            <% if !user.admin && user.teams.size == 0 then %>
-                <li><%= user.email_address + ": " + user.first_name + " " + user.last_name %></li>
-            <% end %>
-        <% end %>
-    </ul>
     <li> Enter student email and team number: </li>
     <%= form_with(url: admin_add_user_to_team_url, local: true) do |f| %>
         <%= f.label :email_address %>
@@ -38,18 +42,76 @@
         <br>
         <%= f.submit "Add Student to Team", class: "btn btn-primary" %>
     <% end %>
-    <li> TODO: make this happen </li>
 </ul>
 
-<p> View Projects and Scores <p>
+<h2>Sections</h2>
+
+<p> View Students by Section </p>
+<ul>
+    <% for section in Course.all %>
+        <% if section.users != [] %>
+            <li><%= link_to section.course_id, section %></li>
+            <ul>
+                <% for user in section.users %>
+                    <% if !user.admin %>
+                        <li><%= link_to user.email_address + ": " + user.first_name + " " + user.last_name, user %></li>
+                    <% end %>
+                <% end %>
+            </ul>
+        <% end %>
+    <% end %>
+</ul>
+
+<p> View Students not in a Section </p>
+<ul>
+    <% for user in User.all %>
+        <% if !user.admin && user.courses.size == 0 %>
+            <li><%= link_to user.email_address + ": " + user.first_name + " " + user.last_name, user %></li>
+        <% end %>
+    <% end %>
+</ul>
+
+<p><%= link_to "Create Sections", root_url + "/courses/new" %></p>
+
+<p> Add Student to a Section </p>
+<ul>
+    <li> Enter student email and section number: </li>
+    <%= form_with(url: admin_add_user_to_section_url, local: true) do |f| %>
+        <%= f.label :email_address %>
+        <%= f.email_field :email_address, class: 'form-control' %>
+        <%= f.label :course_id %>
+        <%= f.select :course_id, Course.all.map { |s| [s.course_id, s.id] }, {}, { class: 'form-control' } %>
+        <br>
+        <%= f.submit "Add Student to Section", class: "btn btn-primary" %>
+    <% end %>
+</ul>
+
+<h2>Projects, Comments, and Scores</h2>
+
+<p> View Projects and Comments <p>
 <ul>
     <% for project in Project.all %>
-        <li><%= project.p_name %></li>
+        <% if project.teams != [] %>
+            <li><%= project.teams.first.team_name + ": " + project.p_name %></li>
+
+            <ul>
+                <li> Comments: </li>
+                <% for comment in project.comments %>
+                    <li><%= "From " + comment.creator + " to " + comment.recipient + ": " + comment.comment%></li>
+                <% end %>
+            </ul>
+            
+            <ul>
+                <li> Scores: </li>
+                <% for score in project.scores %>
+                    <li><%= "From " + score.creator + " to " + score.recipient + ": " + score.score.to_s %></li>
+                <% end %>
+            </ul>
+
+        <% end %>
+
     <% end %>
-    <li> TODO: scores </li>
 </ul>
 
-<p> Add Comments to Projects <p>
-<ul>
-    <li> TODO: make this happen </li>
-</ul>
+<p><%= link_to "Create Scores", root_url + "/scores/new" %></p>
+
