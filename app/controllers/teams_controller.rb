@@ -3,24 +3,32 @@ class TeamsController < ApplicationController
 
   # GET /teams or /teams.json
   def index
+    redirect_to root_path unless current_user.admin?
+
     @teams = Team.all
   end
 
   # GET /teams/1 or /teams/1.json
   def show
+    redirect_to root_path unless current_user.admin?
   end
 
   # GET /teams/new
   def new
+    redirect_to root_path unless current_user.admin?
+
     @team = Team.new
   end
 
   # GET /teams/1/edit
   def edit
+    redirect_to root_path unless current_user.admin?
   end
 
   # POST /teams or /teams.json
   def create
+    return unless current_user.admin?
+
     @team = Team.new(team_params)
 
     respond_to do |format|
@@ -36,6 +44,8 @@ class TeamsController < ApplicationController
 
   # PATCH/PUT /teams/1 or /teams/1.json
   def update
+    return unless current_user.admin?
+
     respond_to do |format|
       if @team.update(team_params)
         format.html { redirect_to team_url(@team), notice: "Team was successfully updated." }
@@ -49,6 +59,8 @@ class TeamsController < ApplicationController
 
   # DELETE /teams/1 or /teams/1.json
   def destroy
+    return unless current_user.admin?
+
     @team.destroy
 
     respond_to do |format|

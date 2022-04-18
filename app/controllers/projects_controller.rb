@@ -3,24 +3,32 @@ class ProjectsController < ApplicationController
 
   # GET /projects or /projects.json
   def index
+    redirect_to root_path unless current_user.admin?
+
     @projects = Project.all
   end
 
   # GET /projects/1 or /projects/1.json
   def show
+    redirect_to root_path unless current_user.admin?
   end
 
   # GET /projects/new
   def new
+    redirect_to root_path unless current_user.admin?
+
     @project = Project.new
   end
 
   # GET /projects/1/edit
   def edit
+    redirect_to root_path unless current_user.admin?
   end
 
   # POST /projects or /projects.json
   def create
+    return unless current_user.admin?
+
     @project = Project.new(project_params)
 
     respond_to do |format|
@@ -36,6 +44,8 @@ class ProjectsController < ApplicationController
 
   # PATCH/PUT /projects/1 or /projects/1.json
   def update
+    return unless current_user.admin?
+
     respond_to do |format|
       if @project.update(project_params)
         format.html { redirect_to project_url(@project), notice: "Project was successfully updated." }
@@ -49,6 +59,8 @@ class ProjectsController < ApplicationController
 
   # DELETE /projects/1 or /projects/1.json
   def destroy
+    return unless current_user.admin?
+
     @project.destroy
 
     respond_to do |format|

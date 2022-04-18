@@ -3,11 +3,16 @@ class UsersController < ApplicationController
 
   # GET /users or /users.json
   def index
+    redirect_to root_path unless current_user.admin?
+
     @users = User.all
   end
 
   # GET /users/1 or /users/1.json
   def show
+    @user = User.find(params[:id])
+
+    redirect_to root_path unless current_user.admin? || current_user == @user
   end
 
   # GET /users/new

@@ -3,16 +3,21 @@ class ScoresController < ApplicationController
 
   # GET /scores or /scores.json
   def index
+    redirect_to root_path unless current_user.admin?
+
     @scores = Score.all
     @scores = @scores.where(project_id: params[:p]) if params[:p]
   end
 
   # GET /scores/1 or /scores/1.json
   def show
+    redirect_to root_path unless current_user.admin?
   end
 
   # GET /scores/new
   def new
+    redirect_to root_path unless current_user.admin?
+
     @score = Score.new
     @score.project_id = params[:project_id] if params[:project_id]
     @score.recipient = params[:recipient] if params[:recipient]
@@ -20,10 +25,13 @@ class ScoresController < ApplicationController
 
   # GET /scores/1/edit
   def edit
+    redirect_to root_path unless current_user.admin?
   end
 
   # POST /scores or /scores.json
   def create
+    return unless current_user.admin?
+
     @score = Score.new(score_params)
 
     respond_to do |format|
@@ -39,6 +47,8 @@ class ScoresController < ApplicationController
 
   # PATCH/PUT /scores/1 or /scores/1.json
   def update
+    return unless current_user.admin?
+
     respond_to do |format|
       if @score.update(score_params)
         format.html { redirect_to score_url(@score), notice: "Score was successfully updated." }
@@ -52,6 +62,8 @@ class ScoresController < ApplicationController
 
   # DELETE /scores/1 or /scores/1.json
   def destroy
+    return unless current_user.admin?
+
     @score.destroy
 
     respond_to do |format|
