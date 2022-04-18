@@ -62,13 +62,19 @@ class UsersController < ApplicationController
     @user = User.find_by(email_address: params[:email_address].downcase)
     @course = Course.find(params[:course_id])
     #@user.update_attribute(:section_number, params[:section_number])
-    if @user && @course 
-      @user.courses << @course
-      redirect_to user_url(@user), notice: "User was successfully added to section"
+    if @user && @course
+      if @user.courses.include?(@course)
+        # no no
+        flash.now[:danger] = 'User is already in this section'
+        render 'show'
+      else 
+        @user.courses << @course
+        redirect_to user_url(@user), notice: "User was successfully added to section"
+      end
     else
       # awkward
       flash.now[:danger] = 'Invalid user or section'
-      render 'index'
+      render 'show'
     end
   end
 
