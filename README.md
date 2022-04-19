@@ -10,28 +10,43 @@ This project was built using:
 - Rails v6.1
 - Node v16
 
-# How to Access Website
-
-The site is hosted on Heroku via [this link](https://frozen-cove-81747.herokuapp.com/).
-
 # How to Run Tests
 
 Use command
 ```bash
-rails test
+$ rails test
 ```
 
 # Usage
 
-Clone the repository and run:
-```bash
-bundle install
+To get started with the app, clone the repo and then install the needed gems:
+
+```
+$ bundle install --without production
 ```
 
-Then run the test development server by running:
-```bash
-rails s
+Next, migrate the database:
+
 ```
+$ rails db:migrate
+```
+
+Run the test development server by running:
+```bash
+$ rails s
+```
+
+# How to Access Website
+
+The site is hosted on Heroku via [this link](https://frozen-cove-81747.herokuapp.com/).
+
+You can choose to run the app in a local server:
+
+```
+$ rails server
+```
+
+# How to use DOGYOU
 
 The tool works as follows...:
 \< insert a lot of images here >
@@ -46,6 +61,9 @@ Michael Gulasy - Added to the user controller has_projects? and reworked the add
 
 Landon Holland - Authorization for all controllers, parameter filtering for comments, and autofill for scores based on parameters.
 
-Hunter Mills - Admin, User and Team Controllers
+Hunter Mills - Created Sessions and Admin Controllers. Worked on User Controller's add_user_to_section.
 
 Cathyna Tong - Course, Project, Admin and User Controllers
+
+For more information, see the
+[*Ruby on Rails Tutorial* book](https://www.railstutorial.org/book).
