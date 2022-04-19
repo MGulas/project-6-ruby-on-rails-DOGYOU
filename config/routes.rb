@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get '/admin', to: 'admin#index'
   post '/admin/add_user_to_team', to: 'admin#add_user_to_team'
   post '/admin/add_user_to_section', to: 'admin#add_user_to_section'
+  get '/user/add_user_to_section', to: 'users#add_user_to_section'
   post '/user/add_user_to_section', to: 'users#add_user_to_section'
   get '/user/myprojects', to: 'users#myprojects'
   get '/user/mysections', to: 'users#mysections'

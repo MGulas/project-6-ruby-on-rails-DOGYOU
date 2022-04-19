@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_17_061737) do
+ActiveRecord::Schema.define(version: 2022_04_19_054759) do
 
   create_table "comments", force: :cascade do |t|
     t.string "creator"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2022_04_17_061737) do
     t.integer "course_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "course_name"
   end
 
   create_table "courses_projects", force: :cascade do |t|

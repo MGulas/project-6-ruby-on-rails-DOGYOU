@@ -9,10 +9,9 @@
 
 <p> Join a Section </p>
 <ul>
-    <li> Enter the section number </li>
     <%= form_with(url: user_add_user_to_section_url, local: true) do |f| %>
-        <%= f.label :course_id %>
-        <%= f.select :course_id, Course.all.map { |s| [s.course_id, s.id] }, {}, { class: 'form-control' } %>
+        <%= f.label "Section Number" %>
+        <%= f.text_field :course_id %>
         <br>
         <%= f.submit "Join Section", class: "btn btn-primary" %>
     <% end %>
