@@ -3,16 +3,16 @@ class UsersController < ApplicationController
 
   # GET /users or /users.json
   def index
-    redirect_to root_path unless current_user.admin?
+    redirect_to root_path unless current_user&.admin?
 
     @users = User.all
   end
 
   # GET /users/1 or /users/1.json
   def show
-    @user = User.find(params[:id])
+    redirect_to root_path unless current_user&.admin? || current_user == @user
 
-    redirect_to root_path unless current_user.admin? || current_user == @user
+    @user = User.find(params[:id])
   end
 
   # GET /users/new
@@ -22,6 +22,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    redirect_to root_path unless current_user&.admin? || current_user == @user
   end
 
   # POST /users or /users.json
@@ -42,6 +43,8 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1 or /users/1.json
   def update
+    return unless current_user&.admin? || current_user == @user
+
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to user_url(@user), notice: "User was successfully updated." }
@@ -55,6 +58,8 @@ class UsersController < ApplicationController
 
   # DELETE /users/1 or /users/1.json
   def destroy
+    return unless current_user&.admin? || current_user == @user
+
     @user.destroy
 
     respond_to do |format|

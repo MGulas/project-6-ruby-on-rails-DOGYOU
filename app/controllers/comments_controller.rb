@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
 
   # GET /comments or /comments.json
   def index
-    if current_user.admin? then
+    if current_user&.admin? then
       @comments = Comment.all
     else
       @comments = Comment.where(["creator = :email or recipient = :email", {email: current_user.email_address}])
@@ -13,7 +13,7 @@ class CommentsController < ApplicationController
 
   # GET /comments/1 or /comments/1.json
   def show
-    redirect_to root_path unless current_user.admin? || current_user.email_address == @comment.creator
+    redirect_to root_path unless current_user&.admin? || current_user&.email_address == @comment.creator
   end
 
   # GET /comments/new
@@ -23,11 +23,13 @@ class CommentsController < ApplicationController
 
   # GET /comments/1/edit
   def edit
-    redirect_to root_path unless current_user.admin? || current_user.email_address == @comment.creator
+    redirect_to root_path unless current_user&.admin? || current_user&.email_address == @comment.creator
   end
 
   # POST /comments or /comments.json
   def create
+    return if current_user.nil?
+
     @comment = Comment.new(comment_params)
 
     respond_to do |format|
@@ -43,7 +45,7 @@ class CommentsController < ApplicationController
 
   # PATCH/PUT /comments/1 or /comments/1.json
   def update
-    return unless current_user.admin? || current_user.email_address == @comment.creator
+    return unless current_user&.admin? || current_user&.email_address == @comment.creator
 
     respond_to do |format|
       if @comment.update(comment_params)
@@ -58,7 +60,7 @@ class CommentsController < ApplicationController
 
   # DELETE /comments/1 or /comments/1.json
   def destroy
-    return unless current_user.admin? || current_user.email_address == @comment.creator
+    return unless current_user&.admin? || current_user&.email_address == @comment.creator
 
     @comment.destroy
 
