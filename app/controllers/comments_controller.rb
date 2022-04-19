@@ -13,6 +13,7 @@ class CommentsController < ApplicationController
 
   # GET /comments/1 or /comments/1.json
   def show
+    redirect_to root_path unless current_user.admin? || current_user.email_address == @comment.creator
   end
 
   # GET /comments/new
@@ -22,6 +23,7 @@ class CommentsController < ApplicationController
 
   # GET /comments/1/edit
   def edit
+    redirect_to root_path unless current_user.admin? || current_user.email_address == @comment.creator
   end
 
   # POST /comments or /comments.json
@@ -41,6 +43,8 @@ class CommentsController < ApplicationController
 
   # PATCH/PUT /comments/1 or /comments/1.json
   def update
+    return unless current_user.admin? || current_user.email_address == @comment.creator
+
     respond_to do |format|
       if @comment.update(comment_params)
         format.html { redirect_to comment_url(@comment), notice: "Comment was successfully updated." }
@@ -54,6 +58,8 @@ class CommentsController < ApplicationController
 
   # DELETE /comments/1 or /comments/1.json
   def destroy
+    return unless current_user.admin? || current_user.email_address == @comment.creator
+
     @comment.destroy
 
     respond_to do |format|
