@@ -20,12 +20,12 @@
       <%= render 'layouts/signup_header' %>
     <% end %>
 
-    <% if logged_in? %>
-      <%= link_to "Profile", current_user %>
-      <%= link_to "Log Out", logout_path, method: :delete %>
-      <% if admin? %>
-        <%= link_to "Admin Page", admin_path %>
-      <% end %>
+    <% if logged_in? && !admin? %>
+      <%= render 'layouts/users_header' %>
+    <% end %>
+    
+    <% if logged_in? && admin? %>
+      <%= render 'layouts/admin_header' %>
     <% end %>
     
     <%= yield %>
