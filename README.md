@@ -10,10 +10,6 @@ This project was built using:
 - Rails v6.1
 - Node v16
 
-# How to Access Website
-
-The site is hosted on Heroku via [this link](https://frozen-cove-81747.herokuapp.com/).
-
 # How to Run Tests
 
 Use command
@@ -23,12 +19,31 @@ rails test
 
 # Usage
 
-Clone the repository and run:
-```bash
-bundle install
+To get started with the app, clone the repo and then install the needed gems:
+
+```
+$ bundle install --without production
 ```
 
-Then run the test development server by running:
+Next, migrate the database:
+
+```
+$ rails db:migrate
+```
+
+# How to Access Website
+
+The site is hosted on Heroku via [this link](https://frozen-cove-81747.herokuapp.com/).
+
+You can choose to run the app in a local server:
+
+```
+$ rails server
+```
+
+# Test
+
+Run the test development server by running:
 ```bash
 rails s
 ```
@@ -49,3 +64,6 @@ Landon Holland - Authorization for all controllers, parameter filtering for comm
 Hunter Mills - Admin, User and Team Controllers
 
 Cathyna Tong - Course, Project, Admin and User Controllers
+
+For more information, see the
+[*Ruby on Rails Tutorial* book](https://www.railstutorial.org/book).
