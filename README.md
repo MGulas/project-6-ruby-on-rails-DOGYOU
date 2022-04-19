@@ -12,7 +12,7 @@ This project was built using:
 
 # How to Access Website
 
-maybe heroku? 
+The site is hosted on Heroku via [this link](https://frozen-cove-81747.herokuapp.com/).
 
 # How to Run Tests
 
@@ -23,14 +23,29 @@ rails test
 
 # Usage
 
+Clone the repository and run:
+```bash
+bundle install
+```
+
+Then run the test development server by running:
+```bash
+rails s
+```
+
+The tool works as follows...:
 \< insert a lot of images here >
+
+# Presentation Slides
+
+[Google Slides Link](https://docs.google.com/presentation/d/1cLoRKpmcc8A0HlRXBsrhNhvsSANv7twcw-r_2CjdGtg/edit?usp=sharing)
 
 # Contributions
 
-Michael Gulassy
+Michael Gulasy - User and Admin Controllers
 
-Landon Holland
+Landon Holland - Authorization for all controllers, parameter filtering for comments, and autofill for scores based on parameters.
 
-Hunter Mills
+Hunter Mills - Admin, User and Team Controllers
 
-Cathyna Tong
+Cathyna Tong - Course, Project, Admin and User Controllers
