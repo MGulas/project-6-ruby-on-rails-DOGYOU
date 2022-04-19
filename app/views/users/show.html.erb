@@ -1,21 +1,34 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Email address:</strong>
-  <%= @user.email_address %>
-</p>
+ <div class="page-header">
+  <p class="text-right"><%= link_to 'Edit My Profile', edit_user_path(@user) %> </p>
+  <h1> My Profile </h1>
+</div><br><br>
 
-<p>
-  <strong>First name:</strong>
-  <%= @user.first_name %>
-</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-4" style="background-color:lavender;">
+      <h4 class="text-center">
+      <strong>First Name:</strong>
+      <%= @user.first_name %>
+      </h4>
+    </div>
+    <div class="col-sm-4" style="background-color:lavender;">
+      <h4 class="text-center">
+      <strong>Last Name:</strong>
+      <%= @user.last_name %>
+      </h4>
+    </div>
+    <div class="col-sm-4" style="background-color:lavender;">
+      <h4 class="text-center">
+      <strong>Email Address:</strong>
+      <%= @user.email_address %>
+      </h4>
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @user.last_name %>
-</p>
-
-<p>
+<p><br>
   <strong>Section(s):</strong>
   <ul>
     <% for section in @user.courses %>
@@ -43,4 +56,3 @@
   </ul>
 </p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> 
