@@ -111,7 +111,7 @@
                     <ul>
                         <li> Comments: </li>
                         <% for comment in project.comments %>
-                            <li><%= "From " + comment.creator + " to " + comment.recipient + ": " + comment.comment%></li>
+                            <li><%= link_to "From " + comment.creator + " to " + comment.recipient + ": " + comment.comment, "comments/" + comment.id.to_s %></li>
                         <% end %>
                     </ul>
             

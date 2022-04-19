@@ -20,19 +20,11 @@
       <div class="col">
         <div class="collapse multi-collapse" id="<%= project.p_name.delete(' ')  %><%= project.p_number %>">
           <div class="card card-body">
-            <% if project.comments.size > 0 %>
-              Comments:
-              <ul>
-                <% for comment in project.comments %>
-                  <li><%= comment.comment %></li>
-                <% end %>
-              </ul>
-            <% else %>
-              No Comments Yet!
-            <% end %>
+            <%= link_to "View Comments", "/comments?p=" + project.id.to_s %>
+            <br>
             <% if project.scores.size > 0 %>
               Score: <% for score in project.scores %>
-                      <%= score.score.to_s %></li>
+                      <%= score.score.to_s if score.recipient == current_user.email_address %></li>
                      <% end %>
             <% else %>
               No Scores Yet!
