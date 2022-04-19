@@ -42,7 +42,7 @@ The tool works as follows...:
 
 # Contributions
 
-Michael Gulasy - User and Admin Controllers
+Michael Gulasy - Added to the user controller has_projects? and reworked the add_user_to_section. Added in params for relations to users, teams, and projects.
 
 Landon Holland - Authorization for all controllers, parameter filtering for comments, and autofill for scores based on parameters.
 
