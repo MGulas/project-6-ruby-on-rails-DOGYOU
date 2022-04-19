@@ -1,21 +1,23 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Teams</h1>
+ <div class="page-header">
+  <h1 class="well well-lg profile-text"> Teams </h1>
+</div><br><br>
 
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th>Team number</th>
-      <th>Section</th>
-      <th>Team name</th>
-      <th>Project</th>
-      <th colspan="3"></th>
+      <th scope="col">Team number</th>
+      <th scope="col">Section</th>
+      <th scope="col">Team name</th>
+      <th scope="col">Project</th>
+      <th colspan="3", scope="col"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @teams.each do |team| %>
-      <tr>
+      <tr scope="row">
         <td><%= team.team_number %></td>
         <td><%= team.team_name %></td>
         <td>
@@ -23,9 +25,9 @@
             <%= project.p_name %>
           <% end %>
         </td>
-        <td><%= link_to 'Show', team %></td>
-        <td><%= link_to 'Edit', edit_team_path(team) %></td>
-        <td><%= link_to 'Destroy', team, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', team, class: "btn btn-secondary" %></td>
+        <td><%= link_to 'Edit', edit_team_path(team), class: "btn btn-secondary" %></td>
+        <td><%= link_to 'Destroy', team, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-secondary" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -33,4 +35,4 @@
 
 <br>
 
-<%= link_to 'New Team', new_team_path %>
+<%= link_to 'New Team', new_team_path, class: "btn btn-primary" %>
