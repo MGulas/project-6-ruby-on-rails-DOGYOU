@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Section(s):</strong>
+  <% current_user.courses.each do |course| %>
+    <%= course.course_id %>
+  <% end %>
+</p>
+
+<p> Join a Section </p>
+<ul>
+    <li> Enter the section number </li>
+    <%= form_with(url: user_add_user_to_section_url, local: true) do |f| %>
+        <%= f.label :course_id %>
+        <%= f.select :course_id, Course.all.map { |s| [s.course_id, s.id] }, {}, { class: 'form-control' } %>
+        <br>
+        <%= f.submit "Join Section", class: "btn btn-primary" %>
+    <% end %>
+</ul>
+
+<%= link_to 'Back', users_path %>
