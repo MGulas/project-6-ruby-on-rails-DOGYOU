@@ -14,7 +14,7 @@ This project was built using:
 
 Use command
 ```bash
-rails test
+$ rails test
 ```
 
 # Usage
@@ -33,7 +33,7 @@ $ rails db:migrate
 
 Run the test development server by running:
 ```bash
-rails s
+$ rails s
 ```
 
 # How to Access Website
