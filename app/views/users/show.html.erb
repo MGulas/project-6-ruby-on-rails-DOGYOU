@@ -1,58 +1,67 @@
 <p id="notice"><%= notice %></p>
 
  <div class="page-header">
-  <p class="text-right"><%= link_to 'Edit My Profile', edit_user_path(@user) %> </p>
-  <h1> My Profile </h1>
+  <p class="text-right"><%= link_to 'Edit My Profile', edit_user_path(@user), class: "btn btn-secondary" %> </p>
+  <h1 class="well well-lg profile-text"> <%= @user.first_name %> <%=  @user.last_name %></h1>
+  <h2> My Profile </h2>
 </div><br><br>
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-sm-4" style="background-color:lavender;">
+    <div class="col-sm-4" style="background-color:darkseagreen;">
       <h4 class="text-center">
       <strong>First Name:</strong>
       <%= @user.first_name %>
       </h4>
     </div>
-    <div class="col-sm-4" style="background-color:lavender;">
+    <div class="col-sm-4" style="background-color:darkseagreen;">
       <h4 class="text-center">
       <strong>Last Name:</strong>
       <%= @user.last_name %>
       </h4>
     </div>
-    <div class="col-sm-4" style="background-color:lavender;">
+    <div class="col-sm-4" style="background-color:darkseagreen;">
       <h4 class="text-center">
       <strong>Email Address:</strong>
       <%= @user.email_address %>
       </h4>
     </div>
   </div>
+</div> <br><br>
+
+<div class="panel panel-info">
+  <div class="panel-heading"><strong>Your Section(s):</strong></div>
+  <div class="panel-body">
+    <ul>
+      <% for section in @user.courses %>
+        <li><%= section.course_id %></li>
+      <% end %>
+    </ul>
+
+    <p> Join Section: </p>
+      <%= form_with(url: user_add_user_to_section_url, local: true) do |f| %>
+        <%= f.label :course_id %>
+        <%= f.select :course_id, Course.all.map { |s| [s.course_id, s.id] }, {}, { class: 'form-control' } %>
+        <%= f.hidden_field :email_address, value: @user.email_address %>
+        <br>
+        <%= f.submit "Join Section", class: "btn btn-primary" %>
+      <% end %>
+  </div>
 </div>
 
-<p><br>
-  <strong>Section(s):</strong>
-  <ul>
-    <% for section in @user.courses %>
-      <li><%= section.course_id %></li>
-    <% end %>
-  </ul>
-</p>
-
-<p> Join Section: </p>
-<%= form_with(url: user_add_user_to_section_url, local: true) do |f| %>
-  <%= f.label :course_id %>
-  <%= f.select :course_id, Course.all.map { |s| [s.course_id, s.id] }, {}, { class: 'form-control' } %>
-  <%= f.hidden_field :email_address, value: @user.email_address %>
-  <br>
-  <%= f.submit "Join Section", class: "btn btn-primary" %>
-<% end %>
-
-
-<p>
-  <strong>Team(s):</strong>
-  <ul>
+<div class="panel panel-info">
+  <div class="panel-heading"><strong>Your Team(s):</strong></div>
+  <div class="panel-body">
+    <p> 
+    <ul>
     <% for team in @user.teams %>
       <li><%= team.team_name %></li>
     <% end %>
-  </ul>
-</p>
+    </ul>
+    </p>
+  </div>
+</div>
+
+
+
 

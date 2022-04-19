@@ -95,6 +95,8 @@ footer {
   }
 }
 
+/* buttons */
+
 .btn-primary{
   background-color: lightblue !important;
   color: black;
@@ -105,10 +107,33 @@ footer {
   }
 }
 
+.btn-secondary{
+  background-color: darkseagreen !important;
+  color: black;
+  &:hover {
+    background-color: black;
+    color: white;
+    text-decoration: none;
+  }
+}
+
+/* navbar */
 .navbar-custom {
   background-color: lightblue;
   color: white;
   &:hover {
     color: black;
   }
+}
+
+.well {
+  background-color: slategray;
+}
+
+.profile-text {
+  color: white;
+}
+
+.panel-heading {
+  background-color: skyblue;
 }

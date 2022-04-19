@@ -4,8 +4,8 @@
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Profile", current_user %></li>
-        <li><%= link_to "My Sections", "#" %></li>
-        <li><%= link_to "My Projects", "#" %></li>
+        <li><%= link_to "My Sections", user_mysections_path %></li>
+        <li><%= link_to "My Projects", user_myprojects_path %></li>
         <li><%= link_to "Log Out", logout_path, method: :delete %></li>
       </ul>
     </nav>
