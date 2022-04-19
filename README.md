@@ -61,7 +61,7 @@ Michael Gulasy - Added to the user controller has_projects? and reworked the add
 
 Landon Holland - Authorization for all controllers, parameter filtering for comments, and autofill for scores based on parameters.
 
-Hunter Mills - Admin, User and Team Controllers
+Hunter Mills - Created Sessions and Admin Controllers. Worked on User Controller's add_user_to_section.
 
 Cathyna Tong - Course, Project, Admin and User Controllers
 
