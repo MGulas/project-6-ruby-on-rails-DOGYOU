@@ -6,9 +6,15 @@ class AdminController < ApplicationController
     user = User.find_by(email_address: params[:email_address].downcase)
     team = Team.find_by (params[:team_number])
     if user && team
-      # add to team
-      user.teams << team
-      redirect_to admin_url
+      if user.teams.include?(team)
+        # no no
+        flash.now[:danger] = 'User is already in this section'
+        render 'index'
+      else 
+        # add to team
+        user.teams << team
+        redirect_to admin_url
+      end
     else
       # create error message
       flash.now[:danger] = 'Invalid user or team'
@@ -20,9 +26,14 @@ class AdminController < ApplicationController
     user = User.find_by(email_address: params[:email_address].downcase)
     section = Course.find(params[:course_id])
     if user && section
-      # add to section
-      user.courses << section
-      redirect_to admin_url
+      if user.courses.include?(section)
+        flash.now[:danger] = 'User is already in this section'
+        render 'index'
+      else 
+        # add to section
+        user.courses << section
+        redirect_to admin_url
+      end
     else
       # create error message
       flash.now[:danger] = 'Invalid user or section'
