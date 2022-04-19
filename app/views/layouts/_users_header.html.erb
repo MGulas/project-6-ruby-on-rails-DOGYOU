@@ -1,0 +1,13 @@
+<header class="navbar navbar-fixed-top navbar-custom">
+  <div class="container">
+    <%= link_to "DOGYOU", current_user, id: "logo" %>
+    <nav>
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to "Profile", current_user %></li>
+        <li><%= link_to "My Sections", "#" %></li>
+        <li><%= link_to "My Projects", "#" %></li>
+        <li><%= link_to "Log Out", logout_path, method: :delete %></li>
+      </ul>
+    </nav>
+  </div>
+</header>
