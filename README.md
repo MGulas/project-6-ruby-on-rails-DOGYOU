@@ -31,6 +31,11 @@ Next, migrate the database:
 $ rails db:migrate
 ```
 
+Run the test development server by running:
+```bash
+rails s
+```
+
 # How to Access Website
 
 The site is hosted on Heroku via [this link](https://frozen-cove-81747.herokuapp.com/).
@@ -41,12 +46,7 @@ You can choose to run the app in a local server:
 $ rails server
 ```
 
-# Test
-
-Run the test development server by running:
-```bash
-rails s
-```
+# How to use DOGYOU
 
 The tool works as follows...:
 \< insert a lot of images here >
