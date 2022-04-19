@@ -66,7 +66,7 @@ class UsersController < ApplicationController
   def add_user_to_section
     begin
       @user = User.find_by(email_address: current_user.email_address.downcase)
-      @course = Course.find(params[:course_id])
+      @course = Course.find_by(course_id: params[:course_id])
       if @user && @course
         if @user.courses.include?(@course)
           flash.now[:danger] = 'User is already in this section'
