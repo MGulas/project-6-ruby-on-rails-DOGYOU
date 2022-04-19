@@ -2,12 +2,8 @@
 
 one:
   team_number: 1
-  section_id: 1
   team_name: MyString
-  project_id: 1
 
 two:
   team_number: 1
-  section_id: 1
   team_name: MyString
-  project_id: 1
