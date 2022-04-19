@@ -64,19 +64,25 @@ class UsersController < ApplicationController
   end
 
   def add_user_to_section
-    @user = User.find_by(email_address: current_user.email_address.downcase)
-    @course = Course.find(params[:course_id])
-    if @user && @course
-      if @user.courses.include?(@course)
-        flash.now[:danger] = 'User is already in this section'
-        render 'show'
-      else 
-        @user.courses << @course
-        redirect_to user_url(@user), notice: "User was successfully added to section"
+    begin
+      @user = User.find_by(email_address: current_user.email_address.downcase)
+      @course = Course.find(params[:course_id])
+      if @user && @course
+        if @user.courses.include?(@course)
+          flash.now[:danger] = 'User is already in this section'
+          render 'mysections'
+        else 
+          @user.courses << @course
+          flash.now[:notice] = "User was successfully added to section"
+          render 'mysections'
+        end
+      else
+        flash.now[:danger] = 'Invalid user or section'
+        render 'mysections'
       end
-    else
+    rescue => e
       flash.now[:danger] = 'Invalid user or section'
-      render 'show'
+      render 'mysections'
     end
   end
 
