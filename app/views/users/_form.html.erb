@@ -42,15 +42,14 @@
     <%= form.check_box :admin %>
   </div>
 
-  <div class="field">
-    <%= form.label "Join Sections" %><br />
-    <%= form.collection_check_boxes :course_ids, Course.all, :id, :course_id do |box| %>
-      <div class="collection-check-box">
-        <%= box.check_box %>
-        <%= box.label %>
-      </div>
-    <% end %>
-  </div>
+ 
+  <%= form_with(url: user_add_user_to_section_url, local: true) do |f| %>
+    <%= f.label :course_id %>
+    <%= f.text_field :course_id %>
+    <br>
+    <%= f.submit "Join Section", class: "btn btn-primary" %>
+  <% end %>
+
 
   <div class="actions">
     <%= form.submit %>
