@@ -100,6 +100,7 @@ class UsersController < ApplicationController
     end
     check
   end
+  helper_method :has_projects?
 
   private
     # Use callbacks to share common setup or constraints between actions.
