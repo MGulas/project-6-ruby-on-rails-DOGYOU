@@ -69,21 +69,6 @@
     </div>  
   </div>
 
-
-  <div class="field">
-    <div class="row">
-      <div class="d-flex justify-content-center text-center">
-        <%= form.label "Join Sections" %><br />
-        <%= form.collection_check_boxes :course_ids, Course.all, :id, :course_id do |box| %>
-          <div class="collection-check-box">
-            <%= box.check_box %>
-            <%= box.label %>
-          </div>
-        <% end %>
-      </div>
-    </div>  
-  </div>
-
   <div class="actions">
   <div class="field">
     <div class="row">
