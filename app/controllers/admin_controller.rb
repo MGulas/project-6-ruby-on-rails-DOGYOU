@@ -1,5 +1,6 @@
 class AdminController < ApplicationController
   def index
+    redirect_to root_path unless current_user.admin?
   end
 
   def add_user_to_team
