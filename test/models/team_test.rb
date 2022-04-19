@@ -5,7 +5,7 @@ class TeamTest < ActiveSupport::TestCase
   #   assert true
   # end
   def setup
-    @team = Team.new(team_number: "999", section_id: "999", team_name: "TESTING TEAM")
+    @team = Team.new(team_number: "999", team_name: "TESTING TEAM")
   end
 
   test "should be valid" do
@@ -14,11 +14,6 @@ class TeamTest < ActiveSupport::TestCase
 
   test "team number should be present" do
     @team.team_number = "     "
-    assert_not @team.valid?
-  end
-
-  test "section id should be present" do
-    @team.section_id = "     "
     assert_not @team.valid?
   end
 
