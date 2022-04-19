@@ -5,8 +5,10 @@ class CommentsController < ApplicationController
   def index
     if current_user&.admin? then
       @comments = Comment.all
-    else
+    elsif !current_user.nil?
       @comments = Comment.where(["creator = :email or recipient = :email", {email: current_user.email_address}])
+    else
+      redirect_to root_path
     end
     @comments = @comments.where(project_id: params[:p]) if params[:p]
   end
@@ -18,6 +20,7 @@ class CommentsController < ApplicationController
 
   # GET /comments/new
   def new
+    redirect_to root_path if current_user.nil?
     @comment = Comment.new
   end
 
