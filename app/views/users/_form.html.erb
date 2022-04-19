@@ -12,47 +12,82 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :email_address %>
-    <%= form.text_field :email_address %>
-  </div>
-
-  <div class="field">
-    <%= form.label :password %>
-    <%= form.password_field :password %>
-  </div>
-
-  <div class="field">
-    <%= form.label :password_confirmation, "Confirmation" %>
-    <%= form.password_field :password_confirmation %>
-  </div>
-
-
-  <div class="field">
-    <%= form.label :first_name %>
-    <%= form.text_field :first_name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :last_name %>
-    <%= form.text_field :last_name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :admin %>
-    <%= form.check_box :admin %>
-  </div>
-
-  <div class="field">
-    <%= form.label "Join Sections" %><br />
-    <%= form.collection_check_boxes :course_ids, Course.all, :id, :course_id do |box| %>
-      <div class="collection-check-box">
-        <%= box.check_box %>
-        <%= box.label %>
+    <div class="row">
+      <div class="d-flex justify-content-center text-center">
+        <%= form.label :email_address %>
+        <%= form.text_field :email_address %>
       </div>
-    <% end %>
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="row">
+      <div class="d-flex justify-content-center text-center">
+        <%= form.label :password %>
+        <%= form.password_field :password %>
+      </div>
+    </div>  
+  </div>
+
+  <div class="field">
+    <div class="row">
+      <div class="d-flex justify-content-center text-center">
+        <%= form.label :password_confirmation, "Confirmation" %>
+        <%= form.password_field :password_confirmation %>
+      </div>
+    </div>  
+  </div>
+
+
+  <div class="field">
+    <div class="row">
+      <div class="d-flex justify-content-center text-center">
+        <%= form.label :first_name %>
+        <%= form.text_field :first_name %>
+      </div>
+    </div>  
+  </div>
+
+  <div class="field">
+    <div class="row">
+      <div class="d-flex justify-content-center text-center">
+        <%= form.label :last_name %>
+        <%= form.text_field :last_name %>
+      </div>
+    </div>  
+  </div>
+
+
+  <div class="field">
+    <div class="row">
+      <div class="d-flex justify-content-center text-center">
+        <%= form.label :admin %>
+        <%= form.check_box :admin %>
+      </div>
+    </div>  
+  </div>
+
+
+  <div class="field">
+    <div class="row">
+      <div class="d-flex justify-content-center text-center">
+        <%= form.label "Join Sections" %><br />
+        <%= form.collection_check_boxes :course_ids, Course.all, :id, :course_id do |box| %>
+          <div class="collection-check-box">
+            <%= box.check_box %>
+            <%= box.label %>
+          </div>
+        <% end %>
+      </div>
+    </div>  
   </div>
 
   <div class="actions">
-    <%= form.submit class: "btn btn-primary" %>
-  </div>
+  <div class="field">
+    <div class="row">
+      <div class="d-flex justify-content-right text-right">
+        <%= form.submit class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>  
 <% end %>
