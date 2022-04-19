@@ -5,13 +5,11 @@ one:
   first_name: MyString
   last_name: MyString
   admin: false
-  section_id: 1
-  team_number: 1
+  password_digest: MyString
 
 two:
   email_address: MyString
   first_name: MyString
   last_name: MyString
   admin: false
-  section_id: 1
-  team_number: 1
+  password_digest: MyString
