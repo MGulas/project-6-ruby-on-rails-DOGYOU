@@ -9,7 +9,7 @@ class AdminController < ApplicationController
     if user && team
       if user.teams.include?(team)
         # no no
-        flash.now[:danger] = 'User is already in this section'
+        flash.now[:danger] = 'User is already in this team'
         render 'index'
       else 
         # add to team

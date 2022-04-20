@@ -91,6 +91,17 @@ class UsersController < ApplicationController
     end
   end
 
+  def has_projects?
+    check = false
+    current_user.teams.each do |team|
+        if team.projects.size > 0
+            check = true
+        end
+    end
+    check
+  end
+  helper_method :has_projects?
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
