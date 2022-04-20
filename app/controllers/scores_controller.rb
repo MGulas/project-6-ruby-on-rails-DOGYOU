@@ -6,6 +6,7 @@ class ScoresController < ApplicationController
     redirect_to root_path unless current_user&.admin?
 
     @scores = Score.all
+    # if param p exists, only give projects with that project_id
     @scores = @scores.where(project_id: params[:p]) if params[:p]
   end
 
@@ -19,6 +20,7 @@ class ScoresController < ApplicationController
     redirect_to root_path unless current_user&.admin?
 
     @score = Score.new
+    # params for project_id and recipient so form autofills for new scores
     @score.project_id = params[:project_id] if params[:project_id]
     @score.recipient = params[:recipient] if params[:recipient]
   end

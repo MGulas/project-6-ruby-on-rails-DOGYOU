@@ -3,6 +3,7 @@ class CommentsController < ApplicationController
 
   # GET /comments or /comments.json
   def index
+    # Depending on current_user, give all comments or only comments involving them.
     if current_user&.admin? then
       @comments = Comment.all
     elsif !current_user.nil?
@@ -10,6 +11,7 @@ class CommentsController < ApplicationController
     else
       redirect_to root_path
     end
+    # if p param exists, only give comments with that project_id
     @comments = @comments.where(project_id: params[:p]) if params[:p]
   end
 
