@@ -38,7 +38,7 @@ $ rails s
 
 # How to Access Website
 
-The site is hosted on Heroku via [this link](https://frozen-cove-81747.herokuapp.com/).
+The site is hosted on Heroku via [this link](https://dogyou.herokuapp.com/).
 
 You can choose to run the app in a local server:
 
