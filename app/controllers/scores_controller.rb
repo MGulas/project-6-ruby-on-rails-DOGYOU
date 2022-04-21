@@ -3,21 +3,26 @@ class ScoresController < ApplicationController
 
   # GET /scores or /scores.json
   def index
-    redirect_to root_path unless current_user&.admin?
-
-    @scores = Score.all
-    # if param p exists, only give projects with that project_id
+    # Depending on current_user, give all comments or only comments involving them.
+    if current_user&.admin? then
+      @scores = Score.all
+    elsif !current_user.nil?
+      @scores = Score.where(["creator = :email or recipient = :email", {email: current_user.email_address}])
+    else
+      redirect_to root_path
+    end
+    # if p param exists, only give comments with that project_id
     @scores = @scores.where(project_id: params[:p]) if params[:p]
   end
 
   # GET /scores/1 or /scores/1.json
   def show
-    redirect_to root_path unless current_user&.admin?
+    redirect_to root_path unless current_user&.admin? || current_user&.email_address == @comment.creator
   end
 
   # GET /scores/new
   def new
-    redirect_to root_path unless current_user&.admin?
+    redirect_to root_path if current_user.nil?
 
     @score = Score.new
     # params for project_id and recipient so form autofills for new scores
@@ -27,12 +32,12 @@ class ScoresController < ApplicationController
 
   # GET /scores/1/edit
   def edit
-    redirect_to root_path unless current_user&.admin?
+    redirect_to root_path unless current_user&.admin? || current_user&.email_address == @comment.creator
   end
 
   # POST /scores or /scores.json
   def create
-    return unless current_user&.admin?
+    return if current_user.nil?
 
     @score = Score.new(score_params)
 
@@ -49,7 +54,7 @@ class ScoresController < ApplicationController
 
   # PATCH/PUT /scores/1 or /scores/1.json
   def update
-    return unless current_user&.admin?
+    return unless current_user&.admin? || current_user&.email_address == @comment.creator
 
     respond_to do |format|
       if @score.update(score_params)
@@ -64,7 +69,7 @@ class ScoresController < ApplicationController
 
   # DELETE /scores/1 or /scores/1.json
   def destroy
-    return unless current_user&.admin?
+    return unless current_user&.admin? || current_user&.email_address == @comment.creator
 
     @score.destroy
 
