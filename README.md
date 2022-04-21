@@ -33,7 +33,7 @@ $ rails db:migrate
 
 Run the test development server by running:
 ```bash
-$ rails s
+$ rails server
 ```
 
 # How to Access Website
