@@ -120,6 +120,7 @@
                         <% for score in project.scores %>
                             <li><%= "From " + score.creator + " to " + score.recipient + ": " + score.score.to_s %></li>
                         <% end %>
+                        <li> Average Score: <%= project.scores.average(:score) %></li>
                     </ul>
 
                 <% end %>
