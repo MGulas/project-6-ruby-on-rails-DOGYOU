@@ -89,7 +89,7 @@ Landon Holland - Authorization for all controllers, parameter filtering for comm
 
 Hunter Mills - Created Sessions and Admin Controllers. Worked on User Controller's add_user_to_section.
 
-Cathyna Tong - Course, Project, Admin and User Controllers
+Cathyna Tong - User authorization for course, project, user, admin, comment and score controllers.
 
 For more information, see the
 [*Ruby on Rails Tutorial* book](https://www.railstutorial.org/book).

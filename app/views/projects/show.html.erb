@@ -1,5 +1,8 @@
 <p id="notice"><%= notice %></p>
 
+<div class="panel panel-info">
+<div class="panel-heading"> <h3>PROJECTS</h3></div>
+<div class="panel-body">
 <p>
   <strong>P number:</strong>
   <%= @project.p_number %>
@@ -9,6 +12,8 @@
   <strong>P name:</strong>
   <%= @project.p_name %>
 </p>
+</div>
+</div>
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>
