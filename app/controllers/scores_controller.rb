@@ -17,7 +17,7 @@ class ScoresController < ApplicationController
 
   # GET /scores/1 or /scores/1.json
   def show
-    redirect_to root_path unless current_user&.admin? || current_user&.email_address == @comment.creator
+    redirect_to root_path unless current_user&.admin? || current_user&.email_address == @score.creator
   end
 
   # GET /scores/new
@@ -32,7 +32,7 @@ class ScoresController < ApplicationController
 
   # GET /scores/1/edit
   def edit
-    redirect_to root_path unless current_user&.admin? || current_user&.email_address == @comment.creator
+    redirect_to root_path unless current_user&.admin? || current_user&.email_address == @score.creator
   end
 
   # POST /scores or /scores.json
@@ -54,7 +54,7 @@ class ScoresController < ApplicationController
 
   # PATCH/PUT /scores/1 or /scores/1.json
   def update
-    return unless current_user&.admin? || current_user&.email_address == @comment.creator
+    return unless current_user&.admin? || current_user&.email_address == @score.creator
 
     respond_to do |format|
       if @score.update(score_params)
@@ -69,7 +69,7 @@ class ScoresController < ApplicationController
 
   # DELETE /scores/1 or /scores/1.json
   def destroy
-    return unless current_user&.admin? || current_user&.email_address == @comment.creator
+    return unless current_user&.admin? || current_user&.email_address == @score.creator
 
     @score.destroy
 

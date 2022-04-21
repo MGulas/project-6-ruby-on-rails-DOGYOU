@@ -16,13 +16,16 @@
   <tbody>
     <% @scores.each do |score| %>
       <tr>
-        <td><%= score.creator %></td>
+        <% if !current_user.admin? && User.find_by(email_address: score.creator).admin? then %>
+          <td><em>Instructor Score</em></td>
+        <% else %>
+          <td><%= score.creator == current_user.email_address || current_user.admin? ? score.creator : "Anonymous" %></td>
+        <% end %>
         <td><%= score.recipient %></td>
         <td><%= score.project_id %></td>
         <td><%= score.score %></td>
-        <td><%= link_to 'Show', score %></td>
-        <td><%= link_to 'Edit', edit_score_path(score) %></td>
-        <td><%= link_to 'Destroy', score, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_score_path(score) if current_user.admin? || current_user.email_address == score.creator %></td>
+        <td><%= link_to 'Destroy', score, method: :delete, data: { confirm: 'Are you sure?' } if current_user.admin? || current_user.email_address == score.creator %></td>
       </tr>
     <% end %>
   </tbody>
