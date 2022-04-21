@@ -23,13 +23,7 @@
           <div class="card card-body">
             <%= link_to "View Comments", "/comments?p=" + project.id.to_s %>
             <br>
-            <% if project.scores.size > 0 %>
-              Score: <% for score in project.scores %>
-                      <%= score.score.to_s if score.recipient == current_user.email_address %></li>
-                     <% end %>
-            <% else %>
-              No Scores Yet!
-            <% end %>
+            <%= link_to "View Scores", "/scores?p=" + project.id.to_s %>
           </div>
         </div>
       <% end %>
