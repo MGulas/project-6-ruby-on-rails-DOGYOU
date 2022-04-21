@@ -1,7 +1,9 @@
 <p id="notice"><%= notice %></p>
 
  <div class="page-header">
-  <p class="text-right"><%= link_to 'Edit My Profile', edit_user_path(@user), class: "btn btn-secondary" %> </p>
+  <% if current_user.id == @user.id %>
+    <p class="text-right"><%= link_to 'Edit My Profile', edit_user_path(@user), class: "btn btn-secondary" %> </p>
+  <% end %>
   <h1 class="well well-lg profile-text"> <%= @user.first_name %> <%=  @user.last_name %></h1>
   <h2> My Profile </h2>
 </div><br><br>
